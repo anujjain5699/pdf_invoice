@@ -32,14 +32,12 @@ class InvoiceInfo {
 
 class InvoiceItem {
   final String description;
-  //final DateTime date;
   final int quantity;
   final double gst;
   final double unitPrice;
 
   const InvoiceItem({
     @required this.description,
-    //@required this.date,
     @required this.quantity,
     @required this.gst,
     @required this.unitPrice,

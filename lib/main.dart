@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdf_invoice/dynamicList/check_list.dart';
 import 'package:pdf_invoice/page/pdf_page.dart';
 
 void main() {
@@ -9,12 +10,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Invoice',
+      title: 'TeamXY',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: PdfPage(),
+      //home: PdfPage(),
+      home: CheckList(),
     );
   }
 }

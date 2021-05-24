@@ -23,7 +23,6 @@ class PdfInvoiceApi {
         build: (context) => [
           buildHeader(invoice),
           SizedBox(height: 1 * PdfPageFormat.cm),
-          //buildTitle(invoice),
           buildInvoice(invoice),
           Divider(),
           buildTotal(invoice),
@@ -53,19 +52,11 @@ class PdfInvoiceApi {
   }
 
   static Widget buildInvoice(Invoice invoice) {
-    final headers = [
-      'Description',
-      //'Date',
-      'Quantity',
-      'Unit Price',
-      'GST',
-      'Total'
-    ];
+    final headers = ['Description', 'Qty', 'Price', 'GST', 'Total'];
     final data = invoice.items.map((item) {
       final total = item.unitPrice * item.quantity * (1 + item.gst);
       return [
         item.description,
-        //Utils.formatDate(item.date),
         '${item.quantity}',
         "${item.unitPrice}",
         '${item.gst} %',
@@ -77,6 +68,8 @@ class PdfInvoiceApi {
       headers: headers,
       data: data,
       border: null,
+      defaultColumnWidth: IntrinsicColumnWidth(flex: 1.5),
+      tableWidth: TableWidth.max,
       headerStyle: TextStyle(fontWeight: FontWeight.bold),
       headerDecoration: BoxDecoration(color: PdfColors.grey300),
       cellHeight: 30,
@@ -110,7 +103,7 @@ class PdfInvoiceApi {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildText(
-                  title: 'Net total',
+                  title: 'Gross total',
                   value: Utils.formatPrice(netTotal),
                   unite: true,
                 ),
@@ -165,20 +158,22 @@ class PdfInvoiceApi {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'INVOICE',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+        Container(
+          color: PdfColors.black,
+          child: Row(
+            children: [
+              Text(
+                'INVOICE',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: PdfColors.white,
+                ),
+              ),
+            ],
           ),
         ),
-        // Image(
-        //   MemoryImage(img),
-        //   fit: BoxFit.fitHeight,
-        //   height: 40,
-        //   width: 40,
-        // ),
-        SizedBox(height: 2 * PdfPageFormat.mm),
+        SizedBox(height: 2 * PdfPageFormat.cm),
       ],
     );
   }
@@ -212,7 +207,7 @@ class PdfInvoiceApi {
               width: 0.5 * PdfPageFormat.cm,
             ),
             Text(
-              "NOGOZO",
+              "TeamXY",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -243,9 +238,7 @@ class PdfInvoiceApi {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 1 * PdfPageFormat.cm,
-        ),
+        
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
