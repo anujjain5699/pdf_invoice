@@ -44,6 +44,7 @@ class _CheckListState extends State<CheckList> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      backgroundColor: Colors.pink[50],
       appBar: new AppBar(
         backgroundColor: Colors.blueGrey[100],
         shadowColor: Colors.brown[300],
@@ -116,7 +117,7 @@ class _CheckListState extends State<CheckList> {
             ),
           ),
           //showBooks(context),
-          SwipeButton.expand(
+          SwipeButton.expand(height: 40,
             thumb: Icon(
               Icons.double_arrow_rounded,
               color: Colors.white,
@@ -125,11 +126,12 @@ class _CheckListState extends State<CheckList> {
               "Swipe to ...",
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 20
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
             activeThumbColor: Colors.black87,
-            activeTrackColor: Colors.purple[200],
+            activeTrackColor: Colors.purple[100],
             onSwipe: () {
               Navigator.push(
                 context,

@@ -21,10 +21,20 @@ class _ShopState extends State<Shop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //bottomSheet: _buttomSheet(context),
+      appBar: new AppBar(
+        backgroundColor: Colors.blueGrey[100],
+        shadowColor: Colors.brown[300],
+        elevation: 30,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(24),
+          ),
+        ),
+        title: new Text("CheckList", style: TextStyle(fontSize: 24)),
+      ),
       body: Container(
         color: Colors.pink[50],
-        padding: EdgeInsets.only(top: 32),
+        //padding: EdgeInsets.only(top: 32),
         child: Column(
           children: [
             Expanded(
@@ -33,6 +43,7 @@ class _ShopState extends State<Shop> {
                 maxScale: 1.5,
                 scaleEnabled: true,
                 child: DataTable(
+                  showBottomBorder: true,
                   showCheckboxColumn: true,
                   sortAscending: true,
                   columns: [
@@ -246,7 +257,7 @@ class _ShopState extends State<Shop> {
                     AnimatedTextKit(
                       animatedTexts: [
                         ColorizeAnimatedText(
-                          'THANKS FOR SHOPPING',
+                          'TeamXY',
                           textStyle: TextStyle(fontSize: 24),
                           colors: [
                             Colors.yellow,
